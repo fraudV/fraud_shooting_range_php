@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Demo</title>
+    <!-- 请勿在项目正式环境中引用该 layui.css 地址 -->
+    <link href="/static/layui/css/layui.css" rel="stylesheet">
+</head>
+<body>
+<table class="layui-hide" id="ID-table-demo-search"></table>
+<script type="text/html" id="TPL-treeTable-demo-tools">
+    <div class="layui-btn-container">
+        <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+        <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="del">删除</a>
+    </div>
+</script>
+<script type="text/html" id="ID-table-demo-page-pagebar">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="footerDemoBtn1">添加</button>
+    </div>
+</script>
+<!-- 请勿在项目正式环境中引用该 layui.js 地址 -->
+<script src="/static/layui/layui.js"></script>
+<script>
+    layui.use(function(){
+        var table = layui.table;
+        var form = layui.form;
+        var laydate = layui.laydate;
+        // 创建表格实例
+        table.render({
+            elem: '#ID-table-demo-search',
+            url: '/env/env_json', // 此处为静态模拟数据，实际使用时需换成真实接口
+
+            pagebar: '#ID-table-demo-page-pagebar', // 分页栏模板
+            cols: [[
+                {field:'id', title: 'ID', width:'4%', sort: true, fixed: true},
+                {field:'name', title: '用户名', width:'10%', fixed: true},
+                {field:'start_time', title: '上传时间', width:'9%'},
+                {field:'update_time', title: '修改时间',width:'9%'},
+                {field:'ports', title: '端口', sort: true, width:'15%'},
+                {field:'status', title: '状态', sort: true, width:'10%'},
+                {field:'address', title: '答案地址', sort: true, width:'25%'},
+                { fixed: "right", title: "操作", width: '15%', align: "center", toolbar: "#TPL-treeTable-demo-tools"}
+            ]],
+            page: true,
+            height: 600
+        });
+        // 日期
+        laydate.render({
+            elem: '.demo-table-search-date'
+        });
+        // 搜索提交
+        form.on('submit(demo-table-search)', function(data){
+            var field = data.field; // 获得表单字段
+            // 执行搜索重载
+            table.reload('ID-table-demo-search', {
+                page: {
+                    curr: 1 // 重新从第 1 页开始
+                },
+                where: field // 搜索的字段
+            });
+            layer.msg('搜索成功<br>此处为静态模拟数据，实际使用时换成真实接口即可');
+            return false; // 阻止默认 form 跳转
+        });
+    });
+</script>
+
+</body>
+</html>

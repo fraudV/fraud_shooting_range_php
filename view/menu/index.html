@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>目录操作</title>
+    <!-- 请勿在项目正式环境中引用该 layui.css 地址 -->
+    <link href="/static/layui/css/layui.css" rel="stylesheet">
+</head>
+<body>
+<table class="layui-hide" id="ID-treeTable-demo"></table>
+
+<script type="text/html" id="TPL-treeTable-demo-tools">
+    <div class="layui-btn-container">
+        <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+        <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="addChild">新增</a>
+        <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="del">删除</a>
+    </div>
+</script>
+
+<!-- 请勿在项目正式环境中引用该 layui.js 地址 -->
+<script src="/static/layui/layui.js"></script>
+<script>
+    layui.use(function(){
+        var treeTable = layui.treeTable;
+        var layer = layui.layer;
+        var dropdown = layui.dropdown;
+        var $ = layui.$
+        // 渲染
+        var inst = treeTable.render({
+            elem: '#ID-treeTable-demo',
+            url: '/menu/menu_json', // 此处为静态模拟数据，实际使用时需换成真实接口
+            tree: {
+                customName:{
+                    children:'menus'
+                }
+                /*
+                // 异步加载子节点
+                async: {
+                  enable: true,
+                  url: '/static/json/2/treeTable/demo-async.json', // 此处为静态模拟数据，实际使用时需换成真实接口
+                  autoParam: ["parentId=id"]
+                }
+                */
+            },
+            maxHeight: '100%',
+            toolbar: '#TPL-treeTable-demo',
+            cols: [[
+                {field: 'id', title: 'ID', width: 80, sort: true, fixed: 'left'},
+                {field: 'name', title: '名称', width: 180, fixed: 'left'},
+                {field: 'to', title: '路径', width: 400, },
+                // {field: 'superiors', title: '上级菜单id', width: 90, sort: true},
+                {field: 'envId', title: '靶场id', width: 80},
+                { fixed: "right", title: "操作", width: 190, align: "center", toolbar: "#TPL-treeTable-demo-tools"}
+            ]],
+            page: true
+        });
+        // 表头工具栏工具事件
+
+        // 单元格工具事件
+        treeTable.on('tool('+ inst.config.id +')', function (obj) {
+            var layEvent = obj.event; // 获得 lay-event 对应的值
+            var trElem = obj.tr;
+            var trData = obj.data;
+            var tableId = obj.config.id;
+
+            if (layEvent === "detail") {
+                layer.msg("查看操作：" + trData.name);
+            } else if (layEvent === "addChild") {
+                var trData = obj.data;
+
+                layer.open({
+                    type: 2,
+                    title:trData.name ,
+                    shadeClose: true,
+                    maxmin: true, //开启最大化最小化按钮
+                    area: ['900px', '600px'],
+                    content: '/menu/add?id='+trData.id
+                });
+            } else if (layEvent === "del") {
+                layer.confirm('确认删除 '+trData.name+' 吗？', {icon: 3}, function(){
+                    layer.confirm('删除关联靶场吗？', {icon: 3}, function(){
+                        $.ajax({
+                            url: '/menu/del', // 替换为你的 API 端点
+                            type: 'POST',
+                            dataType: 'json',
+                            data: {
+                                'id':trData.id,
+                                'del':true
+                            },
+                        success: function(response) {
+                            console.log(response)
+                            if (response.code===0){
+                                layer.msg(response.msg);
+                            }else {
+                                layer.msg(response.msg);
+                            }
+
+                        },
+                        error: function(xhr, status, error) {
+                            // 错误回调
+                            console.log('Error:', error);
+                        }
+                    })
+                    }, function(){
+                        $.ajax({
+                            url: '/menu/del', // 替换为你的 API 端点
+                            type: 'POST',
+                            dataType: 'json',
+                            data: {
+                                'id':trData.id,
+                                'del':false
+                            },
+                            success: function(response) {
+                                console.log(response)
+                                if (response.code===0){
+                                    layer.msg(response.msg);
+                                }else {
+                                    layer.msg(response.msg);
+                                }
+
+                            },
+                            error: function(xhr, status, error) {
+                                // 错误回调
+                                console.log('Error:', error);
+                            }
+                        })
+                    });
+                }, function(){
+                    layer.msg('点击取消的回调');
+                });
+
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

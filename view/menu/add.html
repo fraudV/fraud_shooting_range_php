@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Demo</title>
+    <!-- 请勿在项目正式环境中引用该 layui.css 地址 -->
+    <link href="/static/layui/css/layui.css" rel="stylesheet">
+</head>
+<body>
+<form class="layui-form" id="menuForm" action="">
+    <input type="hidden" name="superiors" value="{$id}">
+    <div class="layui-form-item">
+        <label class="layui-form-label">名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">路径</label>
+        <div class="layui-input-block">
+            <input type="text" name="to" placeholder="请输入" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">靶场</label>
+        <div class="layui-input-block">
+            <input type="file" name="file" id="ID-upload-demo-form-files">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">端口</label>
+        <div class="layui-input-block">
+            <input type="text" name="ports" value="{&quot;F_PORT&quot;: 51637}" placeholder="请输入" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">答案</label>
+        <div class="layui-input-block">
+            <input type="text" name="address" placeholder="请输入" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button type="submit" class="layui-btn" lay-submit lay-filter="demo1">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+<!-- 请勿在项目正式环境中引用该 layui.js 地址 -->
+<script src="/static/layui/layui.js"></script>
+<script>
+    layui.use(['form', 'layer', 'upload'], function(){
+        var form = layui.form;
+        var layer = layui.layer;
+        var upload = layui.upload;
+        var $ = layui.$;
+
+        // 监听表单提交
+        // form.on('submit(demo1)', function(data){
+        //     var formData = new FormData(document.getElementById('menuForm'));
+        //
+        //     // 获取表单字段值并添加到FormData对象中
+        //     var field = data.field;
+        //     for (var key in field) {
+        //         formData.append(key, field[key]);
+        //     }
+        //
+        //     // 获取文件
+        //     var fileInput = document.getElementById('ID-upload-demo-form-files');
+        //     if (fileInput.files.length > 0) {
+        //         formData.append('file', fileInput.files[0]);
+        //     }
+        //
+        //     $.ajax({
+        //         url: '/menu/save', // 替换为你的 API 端点
+        //         type: 'POST',
+        //         data: formData,
+        //         processData: false,
+        //         contentType: false,
+        //         success: function(response) {
+        //             if (response.code === 0){
+        //                 layer.alert(response.msg, {
+        //                     time: 5*1000,
+        //                     success: function(layero, index){
+        //                         var timeNum = this.time/1000, setText = function(start){
+        //                             layer.title('<span class="layui-font-red">'+ (start ? timeNum : --timeNum) + '</span> 秒后自动关闭', index);
+        //                         };
+        //                         setText(true);
+        //                         this.timer = setInterval(setText, 1000);
+        //                         if(timeNum <= 0) clearInterval(this.timer);
+        //                     },
+        //                     end: function(){
+        //                         window.parent.location.reload();
+        //                         parent.layer.close(index);
+        //                     }
+        //                 });
+        //             } else {
+        //                 layer.msg(response.msg);
+        //             }
+        //         },
+        //         error: function(xhr, status, error) {
+        //             layer.msg('上传出错，请重试');
+        //         }
+        //     });
+        //
+        //     return false; // 阻止默认表单提交
+        // });
+
+        // 手动触发上传按钮事件
+        // $('#ID-upload-demo-form-files').on('change', function() {
+            form.on('submit(demo1)', function(data){
+                var formData = new FormData(document.getElementById('menuForm'));
+
+                var field = data.field;
+                for (var key in field) {
+                    formData.append(key, field[key]);
+                }
+
+                var fileInput = document.getElementById('ID-upload-demo-form-files');
+                if (fileInput.files.length > 0) {
+                    formData.append('file', fileInput.files[0]);
+                }
+
+                $.ajax({
+                    url: '/menu/save',
+                    type: 'POST',
+                    data: formData,
+                    dataType: 'json',
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        if (response.code === 0){
+                            layer.alert(response.msg, {
+                                time: 5*1000,
+                                success: function(layero, index){
+                                    var timeNum = this.time/1000, setText = function(start){
+                                        layer.title('<span class="layui-font-red">'+ (start ? timeNum : --timeNum) + '</span> 秒后自动关闭', index);
+                                    };
+                                    setText(true);
+                                    this.timer = setInterval(setText, 1000);
+                                    if(timeNum <= 0) clearInterval(this.timer);
+                                },
+                                end: function(){
+                                    window.parent.location.reload();
+                                    parent.layer.close(index);
+                                }
+                            });
+                        } else {
+                            layer.msg(response.msg);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        layer.msg('上传出错，请重试');
+                    }
+                });
+
+                return false;
+            });
+        // });
+    });
+</script>
+
+</body>
+</html>

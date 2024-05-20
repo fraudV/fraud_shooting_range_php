@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{$env->name}</title>
+    <!-- 请勿在项目正式环境中引用该 layui.css 地址 -->
+    <link href="/static/layui/css/layui.css" rel="stylesheet">
+</head>
+<body>
+<div class="layui-btn-container">
+    <button type="button" id="start"  {equal name='$env->status' value='1'}disabled="disabled"{/equal}    class="layui-btn layui-btn-normal layui-btn-radius {equal name='$env->status' value='1'}layui-btn-disabled{/equal}" lay-on="start">启动靶场</button>
+    <button type="button" class="layui-btn layui-btn-danger layui-btn-radius" lay-on="stop">停止靶场</button>
+    <button type="button" class="layui-btn layui-btn-warm layui-btn-radius" lay-on="restart">重启靶场</button>
+</div>
+<div class="layui-panel">
+    <div class="layui-card-header">{$env->name}</div>
+    <div style="padding: 32px;">
+        <div class="layui-form">
+            <div style="padding: 32px;">
+                {if $env.status == 1}
+                {foreach $env.ports as $key=>$vo }
+                    <a href="http://<?php echo explode(':', $_SERVER['HTTP_HOST'])[0] ?>:{$vo}" target="_blank"><?php echo explode(':', $_SERVER['HTTP_HOST'])[0] ?>:{$vo}</a>
+                {/foreach}
+                {/if}
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-group">
+                    <div class="layui-input-split layui-input-prefix">
+                        flag
+                    </div>
+                    <input type="text" name="flag" placeholder="输入flag" class="layui-input">
+                    <div class="layui-input-suffix">
+                        <button type="submit" {equal name='$env->status' value='0'}disabled="disabled"{/equal}   class="layui-btn layui-btn-primary {equal name='$env->status' value='0'}layui-btn-disabled{/equal}" lay-submit lay-filter="demo1">提交</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- 请勿在项目正式环境中引用该 layui.js 地址 -->
+<script src="/static/layui/layui.js"></script>
+<script>
+    layui.use(function(){
+        var layer = layui.layer;
+        var util = layui.util;
+        var $ = layui.$;
+        var form = layui.form;
+
+        // 事件
+        util.on('lay-on', {
+            'start': function(opt){
+                var loadIndex = layer.load(0);
+                var button = this;
+
+
+                $.ajax({
+                    url: '/env/start', // 替换为你的 API 端点
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        'id':{$env->id},
+                    },
+                    success: function(response) {
+                        console.log(response)
+                        if (response.code===0){
+                            button.classList.add('layui-btn-disabled');
+                            $('#start').attr('disabled', 'disabled');
+                            layer.close(loadIndex)
+                            layer.msg(response.msg);
+                        }else {
+                            layer.close(loadIndex)
+                            layer.msg(response.msg);
+                        }
+
+                    },
+                    error: function(xhr, status, error) {
+                        layer.close(loadIndex)
+                        // 错误回调
+                        console.log('Error:', error);
+                    }
+                });
+                // 模拟关闭
+
+            },
+            'stop': function(){
+                var loadIndex = layer.load(1);
+
+
+                // 模拟关闭
+                $.ajax({
+                    url: '/env/stop', // 替换为你的 API 端点
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        'id':{$env->id},
+                    },
+                    success: function(response) {
+                        console.log(response)
+                        if (response.code===0){
+                            $('#start').removeClass('layui-btn-disabled');
+                            $('#start').removeAttr('disabled');
+                            layer.close(loadIndex)
+                            layer.msg(response.msg);
+                        }else {
+                            layer.close(loadIndex)
+                            layer.msg(response.msg);
+                        }
+
+                    },
+                    error: function(xhr, status, error) {
+                        layer.close(loadIndex)
+                        // 错误回调
+                        console.log('Error:', error);
+                    }
+                });
+            },
+            'restart': function(){
+                var loadIndex = layer.load(2);
+                $('#start').addClass('layui-btn-disabled');
+                $('#start').attr('disabled', 'disabled');
+                // 模拟关闭
+                setTimeout(function(){
+                    layer.close(loadIndex)
+                }, 3000);
+            },
+        })
+
+        form.on('submit(demo1)', function(data){
+            var field = data.field; // 获取表单字段值
+            // 显示填写结果，仅作演示用
+            layer.alert(JSON.stringify(field), {
+                title: '当前填写的字段值'
+            });
+            // 此处可执行 Ajax 等操作
+            // …
+            return false; // 阻止默认 form 跳转
+        });
+    });
+</script>
+
+</body>
+</html>
