@@ -21,7 +21,7 @@ cd fraud_shooting_range_php
 ~~~
 composer install
 ~~~
-安装docker，环境使用是**docker compose**启动，所以不一定支持老版docker
+安装docker，环境使用是**docker compose** 命令启动，不支持**docker-compose**
 ~~~
 curl -s https://get.docker.com/ | sh 
 ~~~
