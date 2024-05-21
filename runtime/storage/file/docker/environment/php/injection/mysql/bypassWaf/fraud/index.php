@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $userData[] = $row;
         }
     }
-    echo json_encode(['code'=>200,'data'=>$userData,'msg'=>'查询成功']);
+    echo json_encode(['code'=>0,'data'=>$userData,'msg'=>'查询成功']);
     return;
 }
 ?>
@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     dataType: 'json',
                     data:xmlData,
                     success: function(response) {
-                        if(response.code==200){
+                        if(response.code==0){
                             // 清空表格内容
                             $('#tableBody').empty();
 

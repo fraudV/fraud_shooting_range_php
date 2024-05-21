@@ -78,10 +78,10 @@ class Env extends BaseController
     {
         return View::fetch('controls');
     }
-    public function env_json()
+    public function env_json($page,$limit)
     {
-        $env=EnvironmentModel::select();
-
-        return new Vo(0,'查询成功',count($env),$env);
+        $env=EnvironmentModel::page($page,$limit)->select();
+        $c = EnvironmentModel::count();
+        return new Vo(0,'查询成功',$c,$env);
     }
 }
