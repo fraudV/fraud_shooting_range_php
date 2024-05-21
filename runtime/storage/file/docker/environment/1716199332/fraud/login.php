@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>用户名枚举</title>
+    <title>时间差</title>
     <!-- 请勿在项目正式环境中引用该 layui.css 地址 -->
     <link href="/pulic/layui/css/layui.css" rel="stylesheet">
 </head>

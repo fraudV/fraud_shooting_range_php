@@ -10,7 +10,7 @@ $user = $_COOKIE['user'];
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>登录绕过</title>
+    <title>观察页面</title>
 </head>
 <body>
 <h1>欢迎回来：<?php echo $user?></h1>
