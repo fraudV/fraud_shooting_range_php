@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>多次请求</title>
     <!-- 请勿在项目正式环境中引用该 layui.css 地址 -->
-    <link href="/pulic/layui/css/layui.css" rel="stylesheet">
+    <link href="/public/layui/css/layui.css" rel="stylesheet">
 </head>
 <body>
 <style>
@@ -115,7 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
 </form>
-<script src="/pulic/layui//layui.js"></script>
+<script src="/public/layui//layui.js"></script>
 <script>
     layui.use(function(){
         var form = layui.form;

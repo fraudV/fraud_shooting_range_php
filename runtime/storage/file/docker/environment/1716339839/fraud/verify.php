@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>邮箱验证</title>
-    <link href="/pulic/layui/css/layui.css" rel="stylesheet">
+    <link href="/public/layui/css/layui.css" rel="stylesheet">
 </head>
 <body>
 <div class="layui-btn-container">
@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         </div>
     </div>
 </form>
-<script src="/pulic/layui//layui.js"></script><script>
+<script src="/public/layui//layui.js"></script><script>
     <?php
     if (isset($_SESSION['message'])) {
         echo 'layer.msg("' . $_SESSION['message'] . '");';}

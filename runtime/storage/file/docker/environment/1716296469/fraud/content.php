@@ -39,7 +39,7 @@ if ($page !== null && is_int($page) && $limit !== null && is_int($limit)) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>邮箱</title>
     <!-- 请勿在项目正式环境中引用该 layui.css 地址 -->
-    <link href="/pulic/layui/css/layui.css" rel="stylesheet">
+    <link href="/public/layui/css/layui.css" rel="stylesheet">
 </head>
 <body>
 <table class="layui-table" lay-data="{height:315, url:'/content.php', page:true}" id="ID-table-demo-init">
@@ -55,7 +55,7 @@ if ($page !== null && is_int($page) && $limit !== null && is_int($limit)) {
 </table>
 
 <!-- 请勿在项目正式环境中引用该 layui.js 地址 -->
-<script src="/pulic/layui//layui.js"></script>
+<script src="/public/layui//layui.js"></script>
 
 </body>
 </html>

@@ -23,7 +23,7 @@ if ($quit){
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="/pulic/layui/css/layui.css" rel="stylesheet">
+    <link href="/public/layui/css/layui.css" rel="stylesheet">
 </head>
 <body>
 <div class="layui-layout layui-layout-admin">
@@ -68,7 +68,7 @@ if ($quit){
     </div>
 </div>
 
-<script src="/pulic/layui//layui.js"></script>
+<script src="/public/layui//layui.js"></script>
 
 </body>
 </html>

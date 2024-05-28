@@ -4,6 +4,7 @@ require_once './config/db.php';
 function ipCount($count)
 {
     global $conn;
+    $count = $count-1;
     $ip = $_SERVER['REMOTE_ADDR'];
     $result = controls("SELECT count,update_time FROM ip_counts WHERE ip = ?",$ip);
 
@@ -20,7 +21,7 @@ function ipCount($count)
             }
         }
     }else{
-        controls("INSERT INTO ip_counts (ip,count) VALUES (?,1)",$ip);
+        controls("INSERT INTO ip_counts (ip,count) VALUES (?,0)",$ip);
     }
 
     return false;

@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>绕waf</title>
     <!-- 请勿在项目正式环境中引用该 layui.css 地址 -->
-    <link href="/pulic/layui/css/layui.css" rel="stylesheet">
+    <link href="/public/layui/css/layui.css" rel="stylesheet">
 </head>
 <body>
 <form class="layui-form" lay-filter="form-1">
@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </tbody>
 </table>
 
-<script src="/pulic/layui/layui.js"></script>
+<script src="/public/layui/layui.js"></script>
 <script>
     layui.use(['form', 'laydate', 'util'], function(){
         var form = layui.form;

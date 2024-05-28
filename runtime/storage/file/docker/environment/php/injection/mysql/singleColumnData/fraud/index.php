@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>单列数据</title>
     <!-- 请勿在项目正式环境中引用该 layui.css 地址 -->
-    <link href="/pulic/layui/css/layui.css" rel="stylesheet">
+    <link href="/public/layui/css/layui.css" rel="stylesheet">
 </head>
 <body>
 <form class="layui-form layui-row layui-col-space16">
