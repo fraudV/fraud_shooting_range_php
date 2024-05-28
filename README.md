@@ -21,11 +21,15 @@ cd fraud_shooting_range_php
 ~~~
 composer install
 ~~~
+导入数据库文件
+~~~
+db/fraud.sql
+~~~
 安装docker，环境使用是**docker compose** 命令启动，不支持**docker-compose**
 ~~~
 curl -s https://get.docker.com/ | sh 
 ~~~
-
+第一次启动环境需要编译下载镜像，所有启动较慢
 ## 项目展示
 ![1716207804731.jpg](img%2F1716207804731.jpg)
 ![1716207817392.jpg](img%2F1716207817392.jpg)
