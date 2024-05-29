@@ -12,7 +12,7 @@ fruad_shooting_range_php
 ubuntu 20.04
 PHP 7.2.21
 mysql 8.0.16
-建议直接使用phpstudy-linux搭建环境
+建议直接使用phpstudy-linux搭建环境：wget -O install.sh https://notdocker.xp.cn/install.sh && sudo bash install.sh
 ~~~
 源码下载
 ~~~
