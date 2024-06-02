@@ -1,0 +1,9 @@
+FROM python:3.9
+
+WORKDIR /app
+
+RUN pip install requests -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+# 启动 Apache 服务
+CMD ["python", "main.py"]
+
