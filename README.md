@@ -7,7 +7,13 @@ fruad_shooting_range_php
 * fraud系列cve挖掘
 
 ## 系统安装
-
+推荐环境
+~~~
+ubuntu 20.04
+PHP 7.2.21
+mysql 8.0.16
+建议直接使用phpstudy-linux搭建环境：wget -O install.sh https://notdocker.xp.cn/install.sh && sudo bash install.sh
+~~~
 源码下载
 ~~~
 https://github.com/telllieV/fraud_shooting_range_php.git
