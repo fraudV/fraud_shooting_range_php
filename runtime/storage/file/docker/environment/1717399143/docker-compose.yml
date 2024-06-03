@@ -1,0 +1,11 @@
+services:
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      F_FLAG: ${F_FLAG}
+    ports:
+      - "${F_PORT}:80"
+    volumes:
+      - ./fraud:/var/www/html

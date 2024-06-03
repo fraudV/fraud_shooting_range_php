@@ -4,11 +4,17 @@ $file = $_GET['file'] ?? null;
 if ($file){
     $path = dirname(__FILE__).$file;
     $path = str_replace("../", "", $path);
-    if (file_exists($path)) {
-        $file_content = file_get_contents($path);
-    }else{
+
+    $file_content = '';
+    $fp = @fopen($path, 'r');
+    if (!$fp) {
         $file_content = '图片不存在';
+    }else{
+        while (false !== ($char = fgetc($fp))) {
+            $file_content .= "$char";
+        }
     }
+
     echo  $file_content;
     return;
 }

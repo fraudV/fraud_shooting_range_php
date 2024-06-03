@@ -1,0 +1,20 @@
+services:
+  php:
+    image: devilbox/php-fpm-5.2
+    container_name: php5.2-fpm
+    environment:
+      F_FLAG: ${F_FLAG}
+    volumes:
+      - ./fraud:/var/www/html
+    command: ["sh","-c","echo flag:x:1001:1001::$F_FLAG:/bin/sh >> /etc/passwd&&echo 'magic_quotes_gpc = off'>>/usr/local/etc/php/php.ini&&php-fpm"]
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    ports:
+      - "${F_PORT}:80"
+    volumes:
+      - ./fraud:/var/www/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
