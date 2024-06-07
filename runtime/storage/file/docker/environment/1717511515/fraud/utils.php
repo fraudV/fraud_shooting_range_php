@@ -120,7 +120,7 @@ function inset_shopping_cart($name,$price,$quantity,$p_id)
 function update_shopping_cart($id,$operation)
 {
     global $conn;
-    $stmt = $conn->prepare("UPDATE shopping_cart SET quantity = quantity ".$operation." 1 WHERE id = ?");
+    $stmt = $conn->prepare("UPDATE shopping_cart SET quantity = quantity ".$operation." 1 WHERE id = ? AND quantity > 1 ");
     $stmt->bind_param("i", $id);
     if ($stmt->execute() === false) {
         return false;

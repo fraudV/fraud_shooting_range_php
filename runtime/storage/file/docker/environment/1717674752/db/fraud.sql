@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.16, for linux-glibc2.12 (x86_64)
 --
--- Host: 127.0.0.1    Database: fraud
+-- Host: 127.0.0.1    Database: test
 -- ------------------------------------------------------
 -- Server version	8.0.16
 

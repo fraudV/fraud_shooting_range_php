@@ -6,15 +6,13 @@ if( $_SERVER['REQUEST_METHOD'] === 'POST'){
 
     $result = get_user($name);
     if ($result){
-        while ($row = $result->fetch_assoc()) {
-            if($row['password']==$pwd){
-                setcookie("id", $row['id'],time()+3600);
-                setcookie("user", $name,time()+3600);
-
-                header("Location: /index.php");
-                exit;
-            }
+        if($result['password']==$pwd){
+            setcookie("id", $result['id'],time()+3600);
+            setcookie("user", $name,time()+3600);
+            header("Location: /index.php");
+            exit;
         }
+
         $error_msg = "密码错误";
     }else{
         $error_msg = "用户名错误";
@@ -26,7 +24,7 @@ if( $_SERVER['REQUEST_METHOD'] === 'POST'){
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>过度信任</title>
+    <title>高级逻辑漏洞</title>
     <!-- 请勿在项目正式环境中引用该 layui.css 地址 -->
     <link href="/public/layui/css/layui.css" rel="stylesheet">
 </head>

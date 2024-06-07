@@ -19,9 +19,8 @@ if ($page>0 && $limit>0){
 if( $_SERVER['REQUEST_METHOD'] === 'POST'){
     $id = $_POST['id']??0;
     $name = $_POST['name']??'';
-    $price = $_POST['price']??0;
-    $num = 1;
-    $insert = inset_shopping_cart($name,$price,$num,$id);
+    $num = $_POST['num']??0;
+    $insert = insert_shopping_cart($num,$id);
     if ($insert){
         echo json_encode([
                 'code'=>0,
@@ -62,7 +61,7 @@ switch ($controls){
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>过度信任</title>
+    <title>高级逻辑漏洞</title>
     <!-- 请勿在项目正式环境中引用该 layui.css 地址 -->
     <link href="/public/layui/css/layui.css" rel="stylesheet">
 </head>
@@ -163,6 +162,7 @@ switch ($controls){
 
         table.on('tool(ID-table-demo-init)', function(obj){
             var data = obj.data;
+            data['num']=1;
             if(obj.event === 'add'){
                 $.ajax({
                     url: '/index.php',
