@@ -56,9 +56,8 @@ class Env extends BaseController
         fclose($sshfile);
 
         // 获取docker文件路
-
-        $se = shell_exec('bash -c '.$sf);
-        return new Vo(1,$env->name.' 靶场启动成功',$env->name);
+        $se = shell_exec('sudo bash -c '.$sf);
+        return new Vo(1,$env->name.' 靶场启动成功',$env->name,$se);
     }
 
     public function stop($id){
@@ -67,10 +66,10 @@ class Env extends BaseController
             return new Vo(1,'靶场未启动');
         }
         $dockerfile = Filesystem::path($env->path.'/docker-compose.yml');
-        $se = shell_exec('docker compose -f '.$dockerfile.' down');
+        $se = shell_exec('sudo docker compose -f '.$dockerfile.' down');
         $env->status =0;
         $env->save();
-        return new Vo(0,$env->name.' 靶场停止成功');
+        return new Vo(0,$env->name.' 靶场停止成功',$se);
     }
 
 

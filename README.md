@@ -7,38 +7,33 @@ fruad_shooting_range_php
 * fraud系列cve挖掘
 
 ## 系统安装
-推荐环境
 ~~~
-ubuntu 20.04
-PHP 7.2.21
-mysql 8.0.16
-建议直接使用phpstudy-linux搭建环境：wget -O install.sh https://notdocker.xp.cn/install.sh && sudo bash install.sh
-~~~
-源码下载
-~~~
-https://github.com/telllieV/fraud_shooting_range_php.git
+打开虚拟机文件
 ~~~
 
-进入目录
 ~~~
-cd fraud_shooting_range_php
+等待导入
 ~~~
-下载PHP依赖包（文件所在根目录执行如下命令）
+
 ~~~
-composer install
+虚机密码：fraud/fraud
 ~~~
-导入数据库文件
+
 ~~~
-db/fraud.sql
+修改docker源，推荐阿里云
+https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors
 ~~~
-安装docker，环境使用是**docker compose** 命令启动，不支持**docker-compose**
+
 ~~~
-curl -s https://get.docker.com/ | sh 
+查看ip
+ip add
 ~~~
-第一次启动环境需要编译下载镜像，所有启动较慢
-## 项目展示
-![1716207804731.jpg](img%2F1716207804731.jpg)
-![1716207817392.jpg](img%2F1716207817392.jpg)
+~~~
+访问服务
+~~~
+~~~
+启动环境
+~~~
 ## 参与开发
 
 开发者：fraud
