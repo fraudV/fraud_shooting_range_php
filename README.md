@@ -1,4 +1,4 @@
-fruad_shooting_range_php
+fruad_shooting_range_php(隐雾基础靶场)
 ===============
 
 ## 开源项目
@@ -8,7 +8,7 @@ fruad_shooting_range_php
 
 ## 系统安装
 ~~~
-打开虚拟机文件
+下载：https://pan.baidu.com/s/1GIgVSAvmYsRXOvOsBFkE8A?pwd=77db 
 ~~~
 
 ~~~

@@ -16,7 +16,7 @@ class Index extends BaseController
      */
     public function index(): string
     {
-        $menu_all = MenuModel::select();
+        $menu_all = MenuModel::where('del',0)->select();
         $menu_nodes = [];
         foreach ($menu_all as $menu){
             if ($menu->superiors==0){

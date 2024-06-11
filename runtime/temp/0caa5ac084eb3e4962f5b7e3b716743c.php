@@ -1,9 +1,9 @@
-<?php /*a:1:{s:68:"/www/admin/fraud_80/wwwroot/fraud_shooting_range_php/view/index.html";i:1716207676;}*/ ?>
+<?php /*a:1:{s:68:"/www/admin/fraud_80/wwwroot/fraud_shooting_range_php/view/index.html";i:1718090467;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>首页</title>
+    <title>隐雾基础靶场-php系列</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,7 +12,7 @@
 <body>
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
-        <div class="layui-logo layui-hide-xs layui-bg-black">fraud_web_靶场</div>
+        <div class="layui-logo layui-hide-xs layui-bg-black">隐雾基础靶场-php系列</div>
         <!-- 头部区域（可配合layui 已有的水平导航） -->
 
 
