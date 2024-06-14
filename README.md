@@ -8,7 +8,8 @@ cfruad_shooting_range_php(隐雾基础靶场)
 
 ## 系统安装
 ~~~
-下载：https://pan.baidu.com/s/1GIgVSAvmYsRXOvOsBFkE8A?pwd=77db 
+直接下载环境镜像
+下载地址：https://pan.baidu.com/s/1IPLlzjQAHy2t2AOIYkG8Xw?pwd=g537
 ~~~
 
 ~~~
