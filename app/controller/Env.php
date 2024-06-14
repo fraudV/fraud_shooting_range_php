@@ -40,6 +40,8 @@ class Env extends BaseController
 
         $ports = json_decode($env->ports,true);
 
+        fwrite($sshfile, "chmod -R 777 /www/admin/fraud_80/wwwroot/fraud_shooting_range_php/runtime/storage/file/docker\n");
+
         foreach ($ports as $key => $value) {
             $ports[$key]=rand(50000, 60000);
             fwrite($sshfile, 'export '.$key.'='.$ports[$key]."\n");

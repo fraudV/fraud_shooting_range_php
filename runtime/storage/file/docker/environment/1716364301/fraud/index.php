@@ -84,10 +84,7 @@ if ($quit){
             <br><br>
         </div>
     </div>
-    <div class="layui-footer">
-        <!-- 底部固定区域 -->
-        底部固定区域
-    </div>
+
 </div>
 
 <script src="/public/layui//layui.js"></script>

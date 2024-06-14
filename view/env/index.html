@@ -69,6 +69,7 @@
                             $('#start').attr('disabled', 'disabled');
                             layer.close(loadIndex)
                             layer.msg(response.msg);
+                            location.reload();
                         }else {
                             layer.close(loadIndex)
                             layer.msg(response.msg);
@@ -124,6 +125,8 @@
                 setTimeout(function(){
                     layer.close(loadIndex)
                 }, 3000);
+
+                layer.alert('此功能为实现，后期再说，停止重启');
             },
         })
 

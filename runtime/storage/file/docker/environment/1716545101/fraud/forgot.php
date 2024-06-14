@@ -8,13 +8,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     $host = $host.$_SERVER['HTTP_HOST'];
     $token = md5(uniqid());
     $url = $host.'/reset_password.php?token='.$token;
+    $url = "重置密码链接：<a href=\"{$url}\">{$url}</a>";
     $cachedData=[
         'name'=>$name,
         'token'=>$token
     ];
     $_SESSION['cachedData']=$cachedData;
     $_SESSION['message']='重置密码链接已经发送';
-    insetEmail($name.'@fraud.com','重置密码链接：'.$url);
+    insetEmail($name.'@fraud.com',$url);
 }
 ?>
 
